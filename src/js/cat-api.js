@@ -5,7 +5,10 @@ import {urlData} from "./urls-storage"
     'x-api-key': urlData.api_key
   }})
   .then((response) => {
-  return response.json();
+    if(response.status!==200) 
+      throw new Error(response.status);
+    else
+      return response.json();
   }).catch(error => error)
 }
 
